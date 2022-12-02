@@ -11,3 +11,4 @@ parameter took place.
 
 Gibbs Sampling
 
+## Contributions
