@@ -13,11 +13,13 @@ def montecarlogibbssampling(data, niter, gamma_init, lambda_init, n0_init):
     l1, l2 = lambda_init[0], lambda_init[1]
     n0 = n0_init
 
+    # simulation process
     for j in range(niter):
-        l1, a1, b1 = lambdacalc(data, n0, a1, b1, True)
-        l2, a2, b2 = lambdacalc(data, n0, a2, b2, False)
-        n0 = nocalc(data, n0, l1, l2)
+        l1, a1, b1 = lambdacalc(data, n0, a1, b1, True) # update l1, a1, b1 values based on previous values
+        l2, a2, b2 = lambdacalc(data, n0, a2, b2, False) # update l2, a2, b2 values based on previous values
+        n0 = nocalc(data, n0, l1, l2) # update n0 using previous n0 and updated l1, l2 values
 
+        # storing l1, l2, n0 values in np array format for output
         l1vals[j] = l1
         l2vals[j] = l2
         n0vals[j] = n0
@@ -45,7 +47,7 @@ def lambdacalc(data, n0, a, b, is1):
 
 
 # initialize the number of iterations
-Iterations = 100000
+iterations = 100000
 n0_init = 0 # initial value of n0 we decide for when it starts the montecarlo stuff
 gamma_init = [8, 1] # initial alpha and beta value of the gamma distribution suggested by Kuti
 lambda_init = [0, 0] # initial l1 and l2 values, currently using the dummy values
@@ -55,7 +57,7 @@ gravData = 0 # replace zero with whatever data we get
 
 # we then call the montecarlo function
 
-n0, lambda1, lambda2 = montecarlogibbssampling(gravData, Iterations, gamma_init, lambda_init, n0_init)
+n0, lambda1, lambda2 = montecarlogibbssampling(gravData, iterations, gamma_init, lambda_init, n0_init)
 print("n0", n0)
 print("lambda1", lambda1)
 print("lambda2", lambda2)
