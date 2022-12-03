@@ -17,7 +17,7 @@ def montecarlogibbssampling(data, niter, gamma_init, lambda_init, n0_init):
     for j in range(niter):
         l1, a1, b1 = lambdacalc(data, n0, a1, b1, True) # update l1, a1, b1 values based on previous values
         l2, a2, b2 = lambdacalc(data, n0, a2, b2, False) # update l2, a2, b2 values based on previous values
-        n0 = nocalc(data, l1, l2) # update n0 using updated l1, l2 values
+        n0 = n0calc(data, l1, l2) # update n0 using updated l1, l2 values
 
         # storing l1, l2, n0 values in np array format for output
         l1vals[j] = l1
@@ -49,7 +49,7 @@ def b_k(index, data, l1, l2):
         sum = P(index, data, l1, l2) + sum
     return sum
 
-def nocalc(data, l1, l2):
+def n0calc(data, l1, l2):
     # calculates the new value of n0 using the probability function from the slides with the lambda's fixed
     return 0
 
