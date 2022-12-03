@@ -17,7 +17,7 @@ def montecarlogibbssampling(data, niter, gamma_init, lambda_init, n0_init):
     for j in range(niter):
         l1, a1, b1 = lambdacalc(data, n0, a1, b1, True) # update l1, a1, b1 values based on previous values
         l2, a2, b2 = lambdacalc(data, n0, a2, b2, False) # update l2, a2, b2 values based on previous values
-        n0 = nocalc(data, n0, l1, l2) # update n0 using previous n0 and updated l1, l2 values
+        n0 = nocalc(data, l1, l2) # update n0 using updated l1, l2 values
 
         # storing l1, l2, n0 values in np array format for output
         l1vals[j] = l1
@@ -27,27 +27,29 @@ def montecarlogibbssampling(data, niter, gamma_init, lambda_init, n0_init):
     return n0vals, l1vals, l2vals
 
 # calculate P on slide 8 on final
-def P(data, n0, l1, l2):
+# discrete probablity as a function of n0: n0 ~ [0, data.size]
+# data, l1, l2 are fixed variables 
+def P(n0, data, l1, l2):
     return np.exp(np.log(l1)*np.sum(data[:(n0+1)])-n0*l1+np.log(l2)*np.sum(data[(n0+1):])-(data.size-n0)*l2)
 
 # calculate a_k on slide 9 on final
-def a_k(data, index, l1, l2):
+def a_k(index, data, l1, l2):
     if index == 0:
         return 0
     else:
         sum = 0
         for i in range(index-1):
-            sum = P(data, index, l1, l2) + sum
+            sum = P(index, data, l1, l2) + sum
         return sum
 
 # calculate b_k on slide 9 on final
-def b_k(data, index, l1, l2):
+def b_k(index, data, l1, l2):
     sum = 0
     for i in range(index):
-        sum = P(data, index, l1, l2) + sum
+        sum = P(index, data, l1, l2) + sum
     return sum
 
-def nocalc(data, n0, l1, l2):
+def nocalc(data, l1, l2):
     # calculates the new value of n0 using the probability function from the slides with the lambda's fixed
     return 0
 
