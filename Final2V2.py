@@ -52,15 +52,26 @@ n0_init = 0 # initial value of n0 we decide for when it starts the montecarlo st
 gamma_init = [8, 1] # initial alpha and beta value of the gamma distribution suggested by Kuti
 lambda_init = [0, 0] # initial l1 and l2 values, currently using the dummy values
 
-# Here we take in the data
-gravData = 0 # replace zero with whatever data we get
+
+# Here we processed the data to be 1-d np.array
+file = open("processedData.txt", "r")
+gravData = file.read().split('\n')
+gravData = np.array(list(map(int, gravData)))
 
 # we then call the montecarlo function
 
 n0, lambda1, lambda2 = montecarlogibbssampling(gravData, iterations, gamma_init, lambda_init, n0_init)
-print("n0", n0)
-print("lambda1", lambda1)
-print("lambda2", lambda2)
 
 # We now have 3 lists of the 3 different values we are trying to find where each index corresponds to a specific
 # simulated point. All we have left to do is graph the stuff.
+
+# plotting n0 
+plt.hist(2017+n0, density=True, range=(2017, 2200))
+
+# plotting l1 and l2
+plt.scatter(lambda1, lambda2)
+
+# calculating mean
+n0_mean = np.mean(n0)
+lambda1_mean = np.mean(lambda1)
+lambda2_mean = np.mean(lambda2)
