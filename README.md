@@ -14,6 +14,16 @@ Gibbs Sampling
 ## Contributions
 Will: Structured the final2.py file 
 
-Leo: update and improve on the main function and implemented the function for calculating lambda1 and lambda2, partc graph and partd mean
+Leo: update and improve on the main function and implemented the function for calculating lambda1 and lambda2, partc graph and partd mean; Debugging
 
-Yuntong: Analysis Note (including part A)
+Yuntong: Analysis Note (including part A); n0 sampling; Debugging
+
+## Things to do 
+
+1. Plot customization for part C
+
+2. Statistical analysis on how different initial values of n0 affect outputs
+
+3. Statistical analysis of n0 distribution
+
+4. Statistical analysis of lamda's distribution
