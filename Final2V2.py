@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import random
 
 def montecarlogibbssampling(data, niter, gamma_init, lambda_init, n0_init):
     # storing the results for niter of the simulation
@@ -51,7 +52,16 @@ def b_k(index, data, l1, l2):
 
 def n0calc(data, l1, l2):
     # calculates the new value of n0 using the probability function from the slides with the lambda's fixed
-    return 0
+    N = np.size(data)
+    n0list = np.linspace(0,N-1)
+    n0prob = np.zeros(N)
+    for i in range(N):
+        n0 = n0list[i]
+        sum1 = np.sum(data[0:i+1])
+        sum2 = np.sum(data[i+1:])
+        exp = np.log(l1) * sum1 - n0 * l1 + np.log(l2) * sum2 - (N-n0) * l2
+        n0prob[i] = np.exp(exp)
+    return random.choice(n0list, weights=n0prob)
 
 
 def lambdacalc(data, n0, a, b, is1):
@@ -70,7 +80,7 @@ def lambdacalc(data, n0, a, b, is1):
 
 # initialize the number of iterations
 iterations = 100000
-n0_init = 0 # initial value of n0 we decide for when it starts the montecarlo stuff
+n0_init = 4 # initial value of n0 we decide for when it starts the montecarlo stuff
 gamma_init = [8, 1] # initial alpha and beta value of the gamma distribution suggested by Kuti
 lambda_init = [0, 0] # initial l1 and l2 values, currently using the dummy values
 
@@ -81,7 +91,6 @@ gravData = file.read().split('\n')
 gravData = np.array(list(map(int, gravData)))
 
 # we then call the montecarlo function
-
 n0, lambda1, lambda2 = montecarlogibbssampling(gravData, iterations, gamma_init, lambda_init, n0_init)
 
 # We now have 3 lists of the 3 different values we are trying to find where each index corresponds to a specific
