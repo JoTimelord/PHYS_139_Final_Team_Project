@@ -26,6 +26,26 @@ def montecarlogibbssampling(data, niter, gamma_init, lambda_init, n0_init):
 
     return n0vals, l1vals, l2vals
 
+# calculate P on slide 8 on final
+def P(data, n0, l1, l2):
+    return np.exp(np.log(l1)*np.sum(data[:(n0+1)])-n0*l1+np.log(l2)*np.sum(data[(n0+1):])-(data.size-n0)*l2)
+
+# calculate a_k on slide 9 on final
+def a_k(data, index, l1, l2):
+    if index == 0:
+        return 0
+    else:
+        sum = 0
+        for i in range(index-1):
+            sum = P(data, index, l1, l2) + sum
+        return sum
+
+# calculate b_k on slide 9 on final
+def b_k(data, index, l1, l2):
+    sum = 0
+    for i in range(index):
+        sum = P(data, index, l1, l2) + sum
+    return sum
 
 def nocalc(data, n0, l1, l2):
     # calculates the new value of n0 using the probability function from the slides with the lambda's fixed
@@ -36,7 +56,7 @@ def lambdacalc(data, n0, a, b, is1):
     # calculates the new lambda value using the probability function from the slides with the other lambda and n0 fixed
     if(is1):
         # use data from 0 to n0
-        a1 = a + np.sum(data[:n0])
+        a1 = a + np.sum(data[:(n0+1)])
         b1 = b + n0
         return np.random.gamma(a1, b1), a1, b1
     else:
@@ -67,6 +87,7 @@ n0, lambda1, lambda2 = montecarlogibbssampling(gravData, iterations, gamma_init,
 
 # plotting n0 
 plt.hist(2017+n0, density=True, range=(2017, 2200))
+
 
 # plotting l1 and l2
 plt.scatter(lambda1, lambda2)
