@@ -12,3 +12,4 @@ parameter took place.
 Gibbs Sampling
 
 ## Contributions
+Leo: update and improve on the main function and implemented the function for calculating lambda1 and lambda2
