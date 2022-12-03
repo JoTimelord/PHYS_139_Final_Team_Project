@@ -107,8 +107,9 @@ gravData = np.array(list(map(int, gravData)))
 # we then call the montecarlo function
 n0, lambda1, lambda2 = montecarlogibbssampling(gravData, iterations, gamma_init, n0_init)
 
-# We now have 3 lists of the 3 different values we are trying to find where each index corresponds to a specific
-# simulated point. All we have left to do is graph the stuff.
+# To-do:
+# you guys might wanna re-scale the plot and add captions and title to it
+# the main algorithm is done
 
 # plotting n0 
 plt.hist(2017+n0, range=(2017, 2200), bins=184)
@@ -116,7 +117,6 @@ plt.hist(2017+n0, range=(2017, 2200), bins=184)
 
 # plotting l1 and l2
 plt.scatter(lambda1, lambda2)
-plt.show()
 
 # calculating mean
 n0_mean = np.mean(n0)
