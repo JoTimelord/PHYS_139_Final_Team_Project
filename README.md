@@ -14,6 +14,6 @@ Gibbs Sampling
 ## Contributions
 Will: Structured the final2.py file 
 
-Leo: update and improve on the main function and implemented the function for calculating lambda1 and lambda2
+Leo: update and improve on the main function and implemented the function for calculating lambda1 and lambda2, partc graph and partd mean
 
 Yuntong: Analysis Note (including part A)
