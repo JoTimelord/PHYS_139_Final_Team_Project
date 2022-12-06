@@ -94,7 +94,7 @@ def lambdacalc(data, n0, a, b, is1):
 # initialize the number of iterations
 iterations = 1000
 n0_init = 5 # initial value of n0 we decide for when it starts the montecarlo stuff
-gamma_init = [8, 1] # initial alpha and beta value of the gamma distribution suggested by Kuti
+gamma_init = [4, 1] # initial alpha and beta value of the gamma distribution suggested by Kuti
 
 
 
@@ -122,8 +122,7 @@ plt.scatter(lambda1, lambda2)
 n0_mean = np.mean(n0)
 lambda1_mean = np.mean(lambda1)
 lambda2_mean = np.mean(lambda2)
-print(lambda1)
-print(lambda2)
+
 #print(n0_mean)
 #print(lambda1_mean)
 #print(lambda2_mean)
