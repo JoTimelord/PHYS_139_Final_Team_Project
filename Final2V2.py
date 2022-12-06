@@ -113,10 +113,15 @@ n0, lambda1, lambda2 = montecarlogibbssampling(gravData, iterations, gamma_init,
 
 # plotting n0 
 plt.hist(2017+n0, range=(2017, 2200), bins=184)
-
+plt.xlim([2100, 2118])
+plt.savefig("problemc1.png")
 
 # plotting l1 and l2
-plt.scatter(lambda1, lambda2)
+plt.scatter(lambda1, lambda2, s=1, c='#d62728', marker=".", cmap=None, norm='linear', vmin=None, vmax=None, alpha=None, linewidths=0.1)
+plt.xlim([10.35, 10.68])
+plt.ylim([17.4, 18.5])
+plt.savefig("problemc2.png")
+plt.close()
 
 # calculating mean
 n0_mean = np.mean(n0)
