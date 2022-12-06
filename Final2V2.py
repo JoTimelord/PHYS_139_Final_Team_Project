@@ -94,7 +94,7 @@ def lambdacalc(data, n0, a, b, is1):
 # initialize the number of iterations
 iterations = 5000
 n0_init = 5 # initial value of n0 we decide for when it starts the montecarlo stuff
-gamma_init = [4, 1] # initial alpha and beta value of the gamma distribution suggested by Kuti
+gamma_init = [8, 1] # initial alpha and beta value of the gamma distribution suggested by Kuti
 
 
 
@@ -102,7 +102,27 @@ gamma_init = [4, 1] # initial alpha and beta value of the gamma distribution sug
 file = open("processedData.txt", "r")
 gravData = file.read().split('\n')
 gravData = np.array(list(map(int, gravData)))
+#file = open("GravitationalWaveDetectionRecord_teamA.txt", "r")
 #print(n0calc(gravData, 10, 18))
+
+# iterate from i = 2017 to i = 2200
+values = range(184)
+with open('years.txt', 'w') as f:
+    for i in values:
+        #print(2017+i)
+        f.write(str(2017+i))
+        if 2017+i == 2200:
+            break
+        f.write('\n')
+yearsfile = open("years.txt", "r")
+years = yearsfile.read().split('\n')
+years = np.array(list(map(int, years)))
+plt.scatter(years, gravData, s=30, facecolors='none', edgecolors='b', marker = "o")
+plt.title('Gravitational Wave Detection Record')
+plt.xlabel('Year')
+plt.ylabel('recorded gravitational wave events')
+#plt.show()
+plt.savefig("problem0.png")
 
 # we then call the montecarlo function
 n0, lambda1, lambda2 = montecarlogibbssampling(gravData, iterations, gamma_init, n0_init)
@@ -112,16 +132,25 @@ n0, lambda1, lambda2 = montecarlogibbssampling(gravData, iterations, gamma_init,
 # the main algorithm is done
 
 # plotting n0 
-plt.hist(2017+n0, range=(2017, 2200), bins=184)
-plt.xlim([2100, 2118])
+plt.hist(2017+n0, range=(2017, 2200), density = True, bins=184, edgecolor='black', linewidth=1.2, color='indianred')
+plt.xlim([2060, 2180])
+plt.ylim([0, 0.25])
+plt.title('$n_0$ probability distribution')
+plt.xlabel('n')
+plt.ylabel('P($n_0|x_{1:N}$)',rotation=0)
+#plt.show()
 plt.savefig("problemc1.png")
 
 # plotting l1 and l2
-plt.scatter(lambda1, lambda2, s=1, c='#d62728', marker=".", cmap=None, norm='linear', vmin=None, vmax=None, alpha=None, linewidths=0.1)
+plt.scatter(lambda1, lambda2, s=1, c='indianred', marker=".")
 plt.xlim([10.35, 10.68])
-plt.ylim([17.4, 18.5])
+plt.ylim([17.4, 18.4])
+plt.title('$\lambda_1$, $\lambda_2$ from Gibbs sampling')
+plt.xlabel('$\lambda_1$')
+plt.ylabel('$\lambda_2$',rotation=0)
+#plt.show()
 plt.savefig("problemc2.png")
-plt.close()
+#plt.close()
 
 # calculating mean
 n0_mean = np.mean(n0)
