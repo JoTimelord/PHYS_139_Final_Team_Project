@@ -92,7 +92,7 @@ def lambdacalc(data, n0, a, b, is1):
 
 
 # initialize the number of iterations
-iterations = 1000
+iterations = 5000
 n0_init = 5 # initial value of n0 we decide for when it starts the montecarlo stuff
 gamma_init = [4, 1] # initial alpha and beta value of the gamma distribution suggested by Kuti
 
