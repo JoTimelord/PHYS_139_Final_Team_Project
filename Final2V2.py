@@ -132,7 +132,7 @@ n0, lambda1, lambda2 = montecarlogibbssampling(gravData, iterations, gamma_init,
 # the main algorithm is done
 
 # plotting n0 
-plt.hist(2017+n0, range=(2017, 2200), density = True, bins=184, edgecolor='black', linewidth=1.2, color='indianred')
+plt.hist(2017+n0, range=(2017, 2200), density = True, bins=184, edgecolor='dimgrey', linewidth=1.2, color='indianred')
 plt.xlim([2060, 2180])
 plt.ylim([0, 0.25])
 plt.title('$n_0$ probability distribution')
@@ -142,9 +142,9 @@ plt.ylabel('P($n_0|x_{1:N}$)',rotation=0)
 plt.savefig("problemc1.png")
 
 # plotting l1 and l2
-plt.scatter(lambda1, lambda2, s=1, c='indianred', marker=".")
-plt.xlim([10.35, 10.68])
-plt.ylim([17.4, 18.4])
+plt.scatter(lambda1, lambda2, s=2, c='indianred', marker=".")
+plt.xlim([10.4, 10.6])
+plt.ylim([17.8, 18.4])
 plt.title('$\lambda_1$, $\lambda_2$ from Gibbs sampling')
 plt.xlabel('$\lambda_1$')
 plt.ylabel('$\lambda_2$',rotation=0)
