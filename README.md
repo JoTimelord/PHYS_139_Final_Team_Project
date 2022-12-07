@@ -12,15 +12,19 @@ parameter took place.
 Gibbs Sampling
 
 ## Contributions
+
 Will: Structured the final2.py file 
+
+Nani: Plot customization, n0 initial value variation code & analysis
 
 Leo: update and improve on the main function and implemented the function for calculating lambda1 and lambda2, partc graph and partd mean; Debugging
 
 Yuntong: Analysis Note (including part A); n0 sampling; Debugging
 
+
 ## Things to do 
 
-1. Plot customization for part C
+1. Plot customization
 
 2. Statistical analysis on how different initial values of n0 affect outputs
 
