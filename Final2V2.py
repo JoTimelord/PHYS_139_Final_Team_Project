@@ -134,10 +134,3 @@ plt.savefig("problemc2.png")
 n0_mean = np.mean(n0)
 lambda1_mean = np.mean(lambda1)
 lambda2_mean = np.mean(lambda2)
-<<<<<<< HEAD
-=======
-
-#print(n0_mean)
-#print(lambda1_mean)
-#print(lambda2_mean)
->>>>>>> 7857d3a7da5914348a7d6531495310340cd359fd

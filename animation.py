@@ -21,7 +21,7 @@ def update(t):
     ax.set_xlim(5,25)
     ax.set_ylim(5,25)
     ax.set_zlim(80+2017,100+2017)
-    ax.set_title('Simulation \nsteps = ' + str(t))
+    ax.set_title('Simulation for n_0 = 5, lambda_1 = 8, lambda_2 = 1 \nsteps = ' + str(t))
 
 
 
