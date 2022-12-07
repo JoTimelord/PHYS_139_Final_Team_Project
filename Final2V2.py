@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import random
 import math
+from matplotlib.animation import FuncAnimation
 import scipy.stats
 
 def montecarlogibbssampling(data, niter, gamma_init, n0_init):
@@ -31,30 +32,7 @@ def montecarlogibbssampling(data, niter, gamma_init, n0_init):
         n0vals[j] = n0
 
     return n0vals, l1vals, l2vals
-"""
-# calculate P on slide 8 on final
-# discrete probablity as a function of n0: n0 ~ [0, data.size]
-# data, l1, l2 are fixed variables 
-def P(n0, data, l1, l2):
-    return np.exp(np.log(l1)*np.sum(data[:(n0+1)])-n0*l1+np.log(l2)*np.sum(data[(n0+1):])-(data.size-n0)*l2)
 
-# calculate a_k on slide 9 on final
-def a_k(index, data, l1, l2):
-    if index == 0:
-        return 0
-    else:
-        sum = 0
-        for i in range(index-1):
-            sum = P(index, data, l1, l2) + sum
-        return sum
-
-# calculate b_k on slide 9 on final
-def b_k(index, data, l1, l2):
-    sum = 0
-    for i in range(index):
-        sum = P(index, data, l1, l2) + sum
-    return sum
-"""
 def n0calc(data, l1, l2):
     # calculates the new value of n0 using the probability function from the slides with the lambda's fixed
     N = data.size
@@ -92,7 +70,7 @@ def lambdacalc(data, n0, a, b, is1):
 
 
 # initialize the number of iterations
-iterations = 5000
+iterations = 1000
 n0_init = 5 # initial value of n0 we decide for when it starts the montecarlo stuff
 gamma_init = [4, 1] # initial alpha and beta value of the gamma distribution suggested by Kuti
 
@@ -127,7 +105,3 @@ plt.close()
 n0_mean = np.mean(n0)
 lambda1_mean = np.mean(lambda1)
 lambda2_mean = np.mean(lambda2)
-
-#print(n0_mean)
-#print(lambda1_mean)
-#print(lambda2_mean)
