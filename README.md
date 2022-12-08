@@ -17,7 +17,7 @@ Will: Structured the final2.py file
 
 Nani: Plot customization, n0 initial value variation code & analysis
 
-Leo: update and improve on the main function and implemented the function for calculating lambda1 and lambda2, partc graph and partd mean; Debugging
+Leo: update and improve on the main function and implemented the function for calculating lambda1 and lambda2, partc graph and partd mean; Debugging; 3D animation of walking process
 
 Yuntong: Analysis Note (including part A); n0 sampling; Debugging
 
@@ -28,7 +28,7 @@ Yuntong: Background + General Analysis of the problem
 
 Will: Outline of the algorithm
 
-Leo: Implementations + Present Conclusions (n0, lamba mean values)
+Leo: Implementations + Present Conclusions (n0, lamba mean values, 3D plots)
 
 Nani: Statistical analysis + Present graphs
 
