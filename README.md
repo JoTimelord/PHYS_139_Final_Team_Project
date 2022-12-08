@@ -22,12 +22,13 @@ Leo: update and improve on the main function and implemented the function for ca
 Yuntong: Analysis Note (including part A); n0 sampling; Debugging
 
 
-## Things to do 
+### Slides division
 
-1. Plot customization
+Yuntong: Background + General Analysis of the problem
 
-2. Statistical analysis on how different initial values of n0 affect outputs
+Will: Outline of the algorithm
 
-3. Statistical analysis of n0 distribution
+Leo: Implementations + Present Conclusions (n0, lamba mean values)
 
-4. Statistical analysis of lamda's distribution
+Nani: Statistical analysis + Present graphs
+
