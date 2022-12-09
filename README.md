@@ -19,7 +19,7 @@ Nani: Plot customization, n0 initial value variation code & analysis
 
 Leo: update and improve on the main function and implemented the function for calculating lambda1 and lambda2, partc graph and partd mean; Debugging; 3D animation of walking process
 
-Yuntong: Analysis Note (including part A); n0 sampling; Debugging
+Yuntong: Analysis Note (including part A); n0 sampling function; Debugging
 
 
 ### Slides division
