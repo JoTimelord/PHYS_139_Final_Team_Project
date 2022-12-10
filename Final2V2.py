@@ -68,9 +68,21 @@ def lambdacalc(data, n0, a, b, is1):
         b2 = b + (data.size -  n0)
         return np.random.gamma(a2,1/b2), a2, b2
 
+def surfaceplot(n0, l1, l2):
+    distance = np.sqrt(np.square(n0)+np.square(l1)+np.square(l2))
+    sigma = np.std(distance)
+    filterarr = distance <= sigma
+    fig = plt.figure()
+    ax = fig.add_subplot(projection='3d')
+    ax.scatter(n0[filterarr], l1[filterarr], l2[filterarr])
+    ax.set_xlabel(r'$n_0$')
+    ax.set_ylabel(r'$\lambda_1$')
+    ax.set_zlabel(r'$\lambda_2$')
+    ax.set_title("One Sigma region")
+    plt.savefig('interval.png')
 
 # initialize the number of iterations
-iterations = 1000
+iterations = 10000
 n0_init = 5 # initial value of n0 we decide for when it starts the montecarlo stuff
 gamma_init = [8, 1] # initial alpha and beta value of the gamma distribution suggested by Kuti
 
