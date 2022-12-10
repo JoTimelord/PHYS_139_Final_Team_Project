@@ -69,15 +69,19 @@ def lambdacalc(data, n0, a, b, is1):
         return np.random.gamma(a2,1/b2), a2, b2
 
 def surfaceplot(n0, l1, l2):
-    distance = np.sqrt(np.square(n0)+np.square(l1)+np.square(l2))
+    distance = np.sqrt(np.square(n0-np.mean(n0))+np.square(l1-np.mean(l1))+np.square(l2-np.mean(l2)))
     sigma = np.std(distance)
     filterarr = distance <= sigma
+    filterarr2 = distance > sigma
     fig = plt.figure()
     ax = fig.add_subplot(projection='3d')
-    ax.scatter(n0[filterarr], l1[filterarr], l2[filterarr])
+    ax.scatter(n0[filterarr], l1[filterarr], l2[filterarr], color='blue', label=r'inside 1$\sigma$')
+    ax.scatter(n0[filterarr2], l1[filterarr2], l2[filterarr2], color='red', label=r'outside 1$\sigma$')
+    ax.scatter(np.mean(n0), np.mean(l1), np.mean(l2), color='black', label='mean')
     ax.set_xlabel(r'$n_0$')
     ax.set_ylabel(r'$\lambda_1$')
     ax.set_zlabel(r'$\lambda_2$')
+    ax.legend()
     ax.set_title("One Sigma region")
     plt.savefig('interval.png')
 
@@ -130,6 +134,8 @@ plt.xlabel('n')
 plt.ylabel('P($n_0|x_{1:N}$)',rotation=0)
 #plt.show()
 plt.savefig("problemc1.png")
+
+surfaceplot(n0, lambda1, lambda2)
 
 # plotting l1 and l2
 plt.scatter(lambda1, lambda2, s=2, c='indianred', marker=".")
